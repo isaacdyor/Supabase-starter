@@ -19,15 +19,6 @@ export async function middleware(request: NextRequest) {
     if (!user) {
       // Redirect to the login page or unauthorized page if authentication fails
       return NextResponse.redirect(new URL("/login", request.url)); // Adjust the URL as needed
-    } else {
-      const profile = await prisma.user.findUnique({
-        where: {
-          email: user?.email,
-        },
-      });
-      if (!profile) {
-        return NextResponse.redirect(new URL("/profile/new", request.url));
-      }
     }
   }
 }
